@@ -1,0 +1,81 @@
+services: 
+  backend:
+    build:
+      context: ./backend 
+      dockerfile: Dockerfile 
+    container_name: backend_fast_api
+    ports: 
+      - 8000:8000
+    env_file:
+      - backend/.env 
+    networks:
+      - backend-network 
+      - frontend-network 
+
+    depends_on:
+      - db 
+  
+  frontend: 
+    build: 
+      context: ./frontend 
+      dockerfile: Dockerfile 
+    container_name: react-frontend 
+    ports: 
+      - 5173:5173 
+    env_file: 
+      - frontend/.env 
+    depends_on: 
+      - backend 
+    networks:
+      - frontend-network
+  
+  db: 
+    image: postgres:13
+    environment: 
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: changethis123
+      POSTGRES_DB: app 
+    ports:
+      - 5432:5432 
+    volumes: 
+      - postgres_data:/var/lib/postgresql/postgres_data 
+    networks: 
+      - backend-network 
+  
+  adminer: 
+    image: adminer
+    restart: always 
+    environment:
+      ADMINER_DEFAULT_SERVER: db 
+    ports:
+      - 8080:8080
+    networks:
+      - backend-network  
+  
+  proxy_manager:
+    image: jc21/nginx-proxy-manager:2.10.4
+    restart: always
+    ports: 
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - data:/data
+      - letsencrypt:/etc/letsencrypt
+    depends_on:
+      - frontend
+      - backend 
+      - db 
+      - adminer 
+    networks: 
+      - frontend-network
+      - backend-network 
+
+networks:
+  frontend-network:
+  backend-network:
+    
+volumes:
+  postgres_data: 
+  data:
+  letsencrypt: 
