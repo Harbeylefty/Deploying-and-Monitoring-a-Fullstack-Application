@@ -30,10 +30,8 @@ services:
       - frontend-network
       - backend-network 
     volumes: 
-      - ./monitoring/promtail-config.yml:/etc/promtail/promtail-config.yaml
+      - ./monitoring/promtail-config.yml:/etc/promtail/promtail-config.yml
       - /var/log:/var/log 
-    command: 
-      - "config.file=/etc/promtail/config.yml"
     depends_on: 
       - loki 
   
@@ -46,7 +44,7 @@ services:
     networks:
       - frontend-network 
     environment:
-      - GF_SERVER_ROOT_URL=http://18.234.111.52:3000/grafana
+      - GF_SERVER_ROOT_URL=http://harbey.mooo.com/grafana
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
     depends_on:
       - loki 
