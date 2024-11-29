@@ -44,7 +44,7 @@ services:
     networks:
       - frontend-network 
     environment:
-      - GF_SERVER_ROOT_URL=http://harbey.mooo.com/grafana
+      - GF_SERVER_ROOT_URL=http://harbeyy.mooo.com/grafana
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
     depends_on:
       - loki 
