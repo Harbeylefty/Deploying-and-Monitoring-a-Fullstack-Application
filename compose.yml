@@ -62,6 +62,7 @@ services:
     volumes:
       - data:/data
       - letsencrypt:/etc/letsencrypt
+      - ./Nginx/nginx.conf:/data/nginx/custom/http_top.conf
     depends_on:
       - frontend
       - backend 

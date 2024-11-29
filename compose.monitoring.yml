@@ -17,12 +17,12 @@ services:
     image: grafana/loki:latest 
     ports: 
       - 3100:3100 
-    networks:
-      - frontend-network 
     command: 
       - --config.file=/etc/loki/loki-config.yml
     volumes: 
       - ./monitoring/loki-config.yml:/etc/loki/loki-config.yml 
+    networks:
+      - frontend-network
   
   promtail:
     image: grafana/promtail:latest 
@@ -36,7 +36,7 @@ services:
       - loki 
   
   grafana:
-    image: grafana/grafana-oss
+    image: grafana/grafana:latest 
     ports: 
       - 3000:3000
     volumes:
