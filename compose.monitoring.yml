@@ -44,7 +44,7 @@ services:
     networks:
       - frontend-network 
     environment:
-      - GF_SERVER_ROOT_URL=http://54.226.27.76:3000/grafana
+      - GF_SERVER_ROOT_URL=http://54.159.253.249:3000/grafana
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
     depends_on:
       - loki 
