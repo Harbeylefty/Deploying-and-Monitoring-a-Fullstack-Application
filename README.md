@@ -28,18 +28,18 @@ This project demonstrates how to deploy and monitor a full-stack application usi
 
 ### 2. Containerize the Application
 - **Backend (FastAPI)**:
-  - Navigate to `backend/` and create a `Dockerfile` (see project files for contents).
+  - Navigate to `backend/` and create a `Dockerfile` 
 - **Frontend (ReactJS)**:
-  - Navigate to `frontend/` and create a `Dockerfile` (see project files).
+  - Navigate to `frontend/` and create a `Dockerfile` 
 - **Docker Compose**:
-  - Create `compose.yml` in the root directory to define services: `backend`, `frontend`, `db`, `adminer`, and `proxy_manager` (see project files).
+  - Create `compose.yml` in the root directory to define services: `backend`, `frontend`, `db`, `adminer`, and `proxy_manager` 
 
 ### 3. Configure Monitoring Stack
 1. Create a `monitoring/` folder and add:
    - `prometheus.yml`: Configures Prometheus scraping.
    - `loki-config.yml`: Sets up Loki log storage.
    - `promtail-config.yml`: Configures Promtail log scraping.
-2. Create `compose.monitoring.yml` to define monitoring services: `prometheus`, `loki`, `promtail`, `grafana`, and `cadvisor` (see project files).
+2. Create `compose.monitoring.yml` to define monitoring services: `prometheus`, `loki`, `promtail`, `grafana`, and `cadvisor` 
 3. Install the Loki Docker driver:
    ```bash
    docker plugin install grafana/loki-docker-driver:2.9.1 --alias loki --grant-all-permissions
@@ -78,7 +78,7 @@ This project demonstrates how to deploy and monitor a full-stack application usi
 1. Obtain subdomains (e.g., from AfraidDNS) and point them to your EC2 IP.
 2. Access Nginx Proxy Manager UI (`<EC2_IP>:81`, default creds: `admin@example.com`/`changeme`).
 3. Generate SSL certificates for each subdomain in the UI.
-4. Create `Nginx/nginx.conf` with routing rules (see project files).
+4. Create `Nginx/nginx.conf` with routing rules 
 5. Update `compose.yml` to mount `nginx.conf`:
    ```yaml
    volumes:
